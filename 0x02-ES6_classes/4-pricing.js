@@ -1,54 +1,29 @@
-import Currency from './3-currency.js';
-
-export default class Pricing {
-  constructor(amount, currency) {
-    this._amount = this._validateNumber(amount, 'amount');
-    this._currency = this._validateCurrency(currency, 'currency');
+/* eslint-disable no-underscore-dangle */
+export default class Currency {
+  constructor(code, name) {
+    this.code = code;
+    this.name = name;
   }
 
-  // Getter for amount
-  get amount() {
-    return this._amount;
+  get code() {
+    return this._code;
   }
 
-  // Setter for amount
-  set amount(newAmount) {
-    this._amount = this._validateNumber(newAmount, 'amount');
+  set code(code) {
+    if (typeof code !== 'string') throw new TypeError('Code must be a string');
+    this._code = code;
   }
 
-  // Getter for currency
-  get currency() {
-    return this._currency;
+  get name() {
+    return this._name;
   }
 
-  // Setter for currency
-  set currency(newCurrency) {
-    this._currency = this._validateCurrency(newCurrency, 'currency');
+  set name(name) {
+    if (typeof name !== 'string') throw new TypeError('Name must be a string');
+    this._name = name;
   }
 
-  // Method to display the attributes in the specified format
-  displayFullPrice() {
-    return `${this._amount} ${this._currency.name} (${this._currency.code})`;
-  }
-
-  // Static method to convert price using the provided conversion rate
-  static convertPrice(amount, conversionRate) {
-    return amount * conversionRate;
-  }
-
-  // Private helper method to validate number attribute
-  _validateNumber(value, attribute) {
-    if (typeof value !== 'number') {
-      throw new TypeError(`${attribute} must be a number.`);
-    }
-    return value;
-  }
-
-  // Private helper method to validate Currency object attribute
-  _validateCurrency(value, attribute) {
-    if (!(value instanceof Currency)) {
-      throw new TypeError(`${attribute} must be an instance of Currency.`);
-    }
-    return value;
+  displayFullCurrency() {
+    return `${this.name} (${this.code})`;
   }
 }

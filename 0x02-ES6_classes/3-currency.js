@@ -1,39 +1,29 @@
+/* eslint-disable no-underscore-dangle */
 export default class Currency {
   constructor(code, name) {
-    this._code = this._validateString(code, 'code');
-    this._name = this._validateString(name, 'name');
+    this.code = code;
+    this.name = name;
   }
 
-  // Getter for code
   get code() {
     return this._code;
   }
 
-  // Setter for code
-  set code(newCode) {
-    this._code = this._validateString(newCode, 'code');
+  set code(code) {
+    if (typeof code !== 'string') throw new TypeError('Code must be a string');
+    this._code = code;
   }
 
-  // Getter for name
   get name() {
     return this._name;
   }
 
-  // Setter for name
-  set name(newName) {
-    this._name = this._validateString(newName, 'name');
+  set name(name) {
+    if (typeof name !== 'string') throw new TypeError('Name must be a string');
+    this._name = name;
   }
 
-  // Method to display the attributes in the specified format
   displayFullCurrency() {
-    return `${this._name} (${this._code})`;
-  }
-
-  // Private helper method to validate string attribute
-  _validateString(value, attribute) {
-    if (typeof value !== 'string') {
-      throw new TypeError(`${attribute} must be a string.`);
-    }
-    return value;
+    return `${this.name} (${this.code})`;
   }
 }
