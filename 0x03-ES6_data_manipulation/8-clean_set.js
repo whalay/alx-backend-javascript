@@ -1,7 +1,5 @@
 export default function cleanSet(set, startString) {
-  const valuesWithStartString = Array.from(set)
-    .filter((value) => value.startsWith(startString))
-    .map((value) => value.slice(startString.length));
-
-  return valuesWithStartString.join('-');
+  const filteredValues = Array.from(set).filter(value => value.startsWith(startString));
+  const cleanedString = filteredValues.map(value => value.slice(startString.length)).join('-');
+  return cleanedString;
 }
